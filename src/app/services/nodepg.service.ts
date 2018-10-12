@@ -17,7 +17,17 @@ export class NodepgService {
 
   testQuery() {
   	const url = 'http://' + ip.ip + ':4000';
-
     return this.http.get(url);
   }
+
+  getId( id: number ) {
+    const url = 'http://' + ip.ip + ':4000/getid/' + id;
+    return this.http.get(url);
+  }
+
+  getAcademicInfo( idpersona: number ) {
+    const url = 'http://' + ip.ip + ':4000/academicinfo/' + idpersona;
+    return this.http.get(url);
+  }
+
 }

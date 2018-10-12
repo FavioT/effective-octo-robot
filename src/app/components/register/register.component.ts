@@ -8,13 +8,13 @@ import { NodepgService } from '../../services/nodepg.service';
 })
 export class RegisterComponent {
 
-  constructor( private nodepg: NodepgService ) { 
+  constructor( private nodepg: NodepgService ) {
   	this.nodepg.testQuery()
       .subscribe( data => {
-        console.log(data);
+
       })
   }
 
-  
+
 
 }
