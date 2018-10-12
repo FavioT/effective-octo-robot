@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NodepgService } from '../../services/nodepg.service';
-import { ngForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -33,18 +32,10 @@ import { ngForm } from '@angular/forms';
 })
 export class RegisterComponent {
 
-  data: any;
-
   constructor( private nodepg: NodepgService ) {
-  	this.data = {
-      name:     '',
-      lastname: '',
-      document: '',
-      birthday: ''
-    }
   }
 
-  onSubmit( registro: ngForm ) {
+  onSubmit( registro: any ) {
     this.nodepg.registerStudent( registro.form.value.name, registro.form.value.lastname, registro.form.value.doc, registro.form.value.birthday )
     .subscribe(
       res => {
