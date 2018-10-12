@@ -38,6 +38,36 @@ import { NodepgService } from '../../services/nodepg.service';
   </tbody>
 </table>
 <h5>Promedio del alumno: {{ promedio }}</h5>
+<hr>
+<h5>Ingrese clase</h5>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Clase</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="nombre" (blur)="onBlurClass()">
+</div>
+<h5>Información de clase</h5>
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">Clase</th>
+    <th scope="col">Profesor</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let item of clase">
+    <th scope="row">{{ item.idalumno }}</th>
+    <td>{{ item.nombre }}</td>
+    <td>{{ item.apellido }}</td>
+    <td>{{ item.clase }}</td>
+    <td>{{ item.profesor }}</td>
+  </tr>
+</tbody>
+</table>
+
   `
 })
 export class ReportsComponent {
@@ -45,7 +75,9 @@ export class ReportsComponent {
   legajo:any;
   id:number;
   info:any;
+  clase:any;
   promedio:number;
+  nombre:string;
 
   constructor( private nodepg: NodepgService ) {
     this.legajo = '';
@@ -69,6 +101,14 @@ export class ReportsComponent {
              })
          })
      }
+  }
 
+  onBlurClass() {
+    if (this.nombre !== '') {
+      this.nodepg.getClass( this.nombre.toLowerCase() )
+        .subscribe( clase => {
+          this.clase = clase;
+        })
+    }
   }
 }

@@ -47,4 +47,9 @@ export class NodepgService {
         });*/
   }
 
+  getClass( name:string ) {
+    const url = 'http://' + ip.ip + ':4000/getclass/' + name;
+    return this.http.get(url);
+  }
+
 }
