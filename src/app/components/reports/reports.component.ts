@@ -5,12 +5,16 @@ import { NodepgService } from '../../services/nodepg.service';
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: [],
-  template: `<div class="input-group mb-3">
+  template: `
+  <h5>Ingrese su legajo</h5>
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-default">Legajo</span>
     </div>
     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="legajo" (blur)="onBlurMethod()">
   </div>
+  <hr>
+  <h5>Estado Académico</h5>
   <table class="table">
   <thead>
     <tr>
@@ -33,6 +37,7 @@ import { NodepgService } from '../../services/nodepg.service';
     </tr>
   </tbody>
 </table>
+<h5>Promedio del alumno: {{ promedio }}</h5>
   `
 })
 export class ReportsComponent {
@@ -40,6 +45,7 @@ export class ReportsComponent {
   legajo:any;
   id:number;
   info:any;
+  promedio:number;
 
   constructor( private nodepg: NodepgService ) {
     this.legajo = '';
@@ -54,7 +60,12 @@ export class ReportsComponent {
              this.nodepg.getAcademicInfo( this. id )
              .subscribe( info => {
                this.info = info || [];
-               console.log(this.info);
+               let suma = 0;
+               this.info.forEach(function(item){
+                  suma += item.nota;
+               });
+               this.promedio = suma / this.info.length;
+
              })
          })
      }

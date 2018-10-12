@@ -4,19 +4,17 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-enrollment',
   templateUrl: './enrollment.component.html',
   styleUrls: [],
-  template: `<div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-default">Materia</span>
-    </div>
-    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+  template: `<form>
+  <div class="form-group">
+    <label for="legajo">Legajo</label>
+    <input type="text" class="form-control" id="legajo" placeholder="Ingrese su legajo">
   </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-default">Legajo</span>
-    </div>
-    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-  </div>`
+  <div class="form-group">
+    <label for="materia">Materia</label>
+    <input type="text" class="form-control" id="materia" placeholder="Ingrese materia">
+  </div>
+  <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>`
 
 })
 export class EnrollmentComponent implements OnInit {

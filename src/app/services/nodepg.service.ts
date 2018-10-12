@@ -1,3 +1,5 @@
+declare var require: any
+
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -28,6 +30,21 @@ export class NodepgService {
   getAcademicInfo( idpersona: number ) {
     const url = 'http://' + ip.ip + ':4000/academicinfo/' + idpersona;
     return this.http.get(url);
+  }
+
+  registerStudent( name:string, lastname:string, doc:string, birthday:string ) {
+    return this.http.post('http://' + ip.ip + ':4000/registerstudent', {
+      name: name,
+      doc: doc,
+      lastname: lastname,
+      birthday: birthday
+    })
+
+    /*return this.http.post('http://jsonplaceholder.typicode.com/posts', {
+          title: 'foo',
+          body: 'bar',
+          userId: 1
+        });*/
   }
 
 }
