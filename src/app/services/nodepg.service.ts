@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+const ip = require('../../../config/conn.js')
+
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -14,7 +16,7 @@ export class NodepgService {
   }
 
   testQuery() {
-  	const url = 'http://localhost:4000/'; 
+  	const url = 'http://' + ip.ip + ':4000';
 
     return this.http.get(url);
   }
