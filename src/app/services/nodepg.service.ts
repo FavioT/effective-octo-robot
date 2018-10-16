@@ -32,19 +32,14 @@ export class NodepgService {
     return this.http.get(url);
   }
 
-  registerStudent( name:string, lastname:string, doc:string, birthday:string ) {
+  registerStudent( id:number, name:string, lastname:string, doc:string, birthday:string ) {
     return this.http.post('http://' + ip.ip + ':4000/registerstudent', {
+      id: id,
       name: name,
       doc: doc,
       lastname: lastname,
       birthday: birthday
     })
-
-    /*return this.http.post('http://jsonplaceholder.typicode.com/posts', {
-          title: 'foo',
-          body: 'bar',
-          userId: 1
-        });*/
   }
 
   getClass( name:string ) {
@@ -52,4 +47,13 @@ export class NodepgService {
     return this.http.get(url);
   }
 
+  updateStudent( id:number, name:string, lastname:string, doc:string, birthday:string ) {
+    return this.http.post('http://' + ip.ip + ':4000/update', {
+      id: id,
+      name: name,
+      doc: doc,
+      lastname: lastname,
+      birthday: birthday
+    })
+  }
 }

@@ -32,19 +32,43 @@ import { NodepgService } from '../../services/nodepg.service';
 })
 export class RegisterComponent {
 
+  data:any = [];
+
   constructor( private nodepg: NodepgService ) {
   }
 
   onSubmit( registro: any ) {
-    this.nodepg.registerStudent( registro.form.value.name, registro.form.value.lastname, registro.form.value.doc, registro.form.value.birthday )
-    .subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
+    this.nodepg.testQuery()
+    .subscribe( res => {
+      this.data = res;
+      let founded = this.data.find(inf => {
+        return parseInt(inf.documento) === parseInt(registro.form.value.doc);
+      })
+
+      if (founded) {
+        this.nodepg.updateStudent( founded.identificador, registro.form.value.name, registro.form.value.lastname, registro.form.value.doc, registro.form.value.birthday )
+        .subscribe(
+          res => {
+            console.log("Alumno actualizado correctamente");
+          },
+          err => {
+            console.log("Error occured");
+          }
+        );
+      } else {
+        this.nodepg.registerStudent( this.data.length, registro.form.value.name, registro.form.value.lastname, registro.form.value.doc, registro.form.value.birthday )
+        .subscribe(
+          res => {
+            console.log("Alumno creado correctamente");
+          },
+          err => {
+            console.log("Error occured");
+          }
+        )
       }
-    );
+
+
+    })
 
   }
 
