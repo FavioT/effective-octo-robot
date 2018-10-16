@@ -56,4 +56,11 @@ export class NodepgService {
       birthday: birthday
     })
   }
+
+  inscription( id:number, name:string) {
+    return this.http.post('http://' + ip.ip + ':4000/inscription', {
+      id: id,
+      name: name
+    })
+  }
 }
