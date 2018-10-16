@@ -11,7 +11,7 @@ import { NodepgService } from '../../services/nodepg.service';
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-default">Legajo</span>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="legajo" (blur)="onBlurMethod()">
+    <input type="text" placeholder="98734" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="legajo" (blur)="onBlurMethod()">
   </div>
   <hr>
   <h5>Estado Académico</h5>
@@ -42,9 +42,9 @@ import { NodepgService } from '../../services/nodepg.service';
 <h5>Ingrese clase</h5>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Clase</span>
+    <span class="input-group-text" id="inputGroup-sizing-default" placeholder="Por ej. Java">Clase</span>
   </div>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="nombre" (blur)="onBlurClass()">
+  <input type="text" placeholder="Java" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="nombre" (blur)="onBlurClass()">
 </div>
 <h5>Información de clase</h5>
 <table class="table">
